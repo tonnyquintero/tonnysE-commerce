@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack server",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "format": "prettier --write '{*.js,src/**/*.{js,jsx}}'",
+    "lint": "eslint src/ --fix"
   },
   "husky": {
     "hooks": {
@@ -19,8 +21,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "eslint": "^8.25.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "prettier": "^2.7.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
