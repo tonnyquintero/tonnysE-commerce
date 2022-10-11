@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import initialState from '../initialState'
 
 const useInitialState = () => {
@@ -18,9 +18,17 @@ const useInitialState = () => {
         })
     }
 
+    const addToBuyer = payload => {
+        setState({
+            ...state,
+            buyer: [...state.buyer, payload]
+        })
+    }
+
     return {
         addToCart,
         removeFromCart,
+        addToBuyer,
         state,
     }
 

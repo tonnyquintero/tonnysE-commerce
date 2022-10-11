@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import '../styles/components/Checkout.css'
 import { Link } from 'react-router-dom'
+import '../styles/components/Checkout.css'
 import AppContext from '../context/AppContext'
 
 const Checkout = () => {

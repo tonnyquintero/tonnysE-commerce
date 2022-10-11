@@ -1,8 +1,36 @@
-import React from 'react'
+import React, { useRef, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import AppContext from '../context/AppContext'
 import '../styles/components/Information.css'
-import { Link } from 'react-router-dom'
+
 
 const Information = () => {
+
+  const { state, addToBuyer } = useContext(AppContext);
+
+  const form = useRef(null);
+
+  const navigate = useNavigate();
+
+  const { cart } = state;
+
+  const handleSubmit = () => {
+    const formData = new FormData(form.current)
+    const buyer = {
+      'name': formData.get('name'),
+      'email': formData.get('email'),
+      'addres': formData.get('addres'),
+      'apto': formData.get('apto'),
+      'city': formData.get('city'),
+      'country': formData.get('country'),
+      'state': formData.get('state'),
+      'cp': formData.get('cp'),
+      'phone': formData.get('phone'),
+    }
+    addToBuyer(buyer);
+    navigate('/checkout/payment')
+  }
+
   return (
     <div className="Information">
       <div className="Information-content">
@@ -10,7 +38,7 @@ const Information = () => {
           <h2>Informacion de contacto</h2>
         </div>
         <div className="Information-form">
-          <form action="">
+          <form ref={form}>
             <input type="text" placeholder='Nombre Completo' name='name' />
             <input type="text" placeholder='Correo Electronico' name='email' />
             <input type="text" placeholder='Direccion' name='address' />
@@ -23,21 +51,23 @@ const Information = () => {
           </form>
         </div>
         <div className="Information-buttons">
-          <button className='Information-back'>Regresar</button>
-          <Link to='/checkout/payment'><button className="Information-next">Pagar</button></Link>
+          <Link to='/checkout' ><button type='button' className='Information-back'>Regresar</button></Link>
+          <button type='button' onClick={handleSubmit} >Pagar</button>
         </div>
       </div>
       <div className="Information-sidebar">
         <h3>Pedido</h3>
-        <div className="Information-item">
+        {cart.map((item) => (
+          <div className="Information-item" key={item.title}>
           <div className="Information-element">
-            <h4>Item Name</h4>
-            <span>$ 10</span>
+            <h4>{item.title}</h4>
+            <span>$ {item.price}</span>
           </div>
         </div>
+        ))}
+        
       </div>
     </div>
-  )
-  }
+  ) }
 
 export default Information;
