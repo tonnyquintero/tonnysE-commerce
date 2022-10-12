@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import '../styles/components/Checkout.css'
 import AppContext from '../context/AppContext'
@@ -19,11 +20,15 @@ const Checkout = () => {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>Lista de Pedidos - Tonnys conf merch</title>
+    </Helmet>
     <div className="Checkout">
-      <div className="Checkout-content">
+      <div  className="Checkout-content">
         {cart.length > 0 ? <h3>Lista de Pedidos: </h3> : <h3>Sin Pedidos</h3>}
         {cart.map((item, i) => (
-          <div className="Checkout-item">
+          <div key={i} className="Checkout-item">
           <div className="Checkout-element">
             <h4>{item.title}</h4>
             <span>$ {item.price}</span>
@@ -43,6 +48,7 @@ const Checkout = () => {
       )}
     
     </div>
+  </>
   )
 }
 
