@@ -7,8 +7,17 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.Main {
+.MainBlack {
   padding: 10px;
+  background: black;
+  grid-template-columns: minmax(auto, 768px);
+  display: grid;
+  justify-content: center;
+}
+
+.MainLight {
+  padding: 10px;
+  background: white;
   grid-template-columns: minmax(auto, 768px);
   display: grid;
   justify-content: center;
